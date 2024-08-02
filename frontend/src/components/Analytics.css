@@ -1,0 +1,292 @@
+.analytics-container{
+	display: flex;
+	flex-wrap: nowrap;
+  	overflow-x: hidden;
+	width: 100%;
+	height: calc(100vh - 8rem);
+}
+
+.analytics-sidebar{
+	display: flex;
+	gap: 2rem;
+	flex-direction: column;
+	align-items: center;
+	width: 10%;
+	height: calc(100vh - 8rem);
+	/* border-right: 1px solid black; */
+	background-color: #ffffe9;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-sidebar h2{
+	font-size: 2rem;
+    color: black;
+    text-align: center;
+} 
+.analytics-device-list{
+	display: flex;
+    flex-direction: column;
+	top: 40%;
+    gap: 2rem;
+    width: 90%;
+	height: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    /* border: 1px solid black; */
+}
+
+.device-item{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	width: 100%;
+	padding: 1rem;
+	border-radius: 1rem;
+	border: 1px solid black;
+	color: #333;
+	font-size: large;
+	font-weight: 700;
+	cursor: pointer;
+	background-color: #ebebd7;
+}
+
+.device-item:hover{
+	background-color: #ffffe9;
+}
+
+.device-item.active{
+	background-color: #b9a86b;
+}
+
+
+.analytics-graphs{
+	display: flex;
+    flex-direction: column;
+    height: calc(100vh - 8rem);
+    width: 90%;
+	gap: 2rem;
+	align-items: center;
+	overflow-y: auto;
+}
+
+
+.chart-container {
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	height: 70%;
+	gap: 0.5rem;
+	margin-top: 2rem;
+	flex-shrink: 0;
+	border-radius: 2rem;
+	scroll-margin-top: 2rem;
+	justify-content: space-evenly;
+}
+
+.chart-stats{
+	background-color: #ffffe9;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	color: black;
+	width: 30%;
+	border-radius: 0.5rem;
+	justify-content: space-evenly;
+	/* border: 1px solid black; */
+}
+
+
+.chart-stats h2{
+	padding: 0.5rem;
+	text-align: center;
+	height: 10%;
+	margin: 0;
+
+}
+.analytics-temperature-png{
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 60%;
+	width: 100%;
+  }
+  
+ .analytics-temperature-png img{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+ }
+
+ .analytics-temp-percent{
+	position: absolute;
+	text-align: center;
+	font-size: large;
+	font-weight: 700;
+	left: 4%;
+	top: 45%;
+  }
+  .analytics-temp-bar{
+	position: absolute;
+	text-align: center;
+	left: 18.5%;
+	top: 42%;
+	height: 15%;
+	max-width: 74%;
+	border-right: 2px solid black;
+	z-index: 10;
+	/* border-top-right-radius: 1.5em;
+	border-bottom-right-radius: 1.5em;
+	background-image: linear-gradient(to right, blue, red); */
+  }
+
+  .analytics-humidity-png{
+	display: flex;
+	align-items: center;
+	align-content: center;
+	position: relative;
+	height: 90%;
+	width: 100%;
+  }
+  .analytics-humidity-png img{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+ }
+
+ .analytics-humidity-percent{
+	position: absolute;
+	text-align: center;
+	font-size: larger;
+	font-weight: 700;
+	left: 42%;
+	top: 70%;
+ }
+ .analytics-humidity-needle{
+	position: absolute;
+	width: 8px;
+	height: 80px;
+	top: 27%;
+	left: 50.5%;
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: gray;
+	z-index: 10;
+	transform-origin: bottom;
+	/* transform: rotate(-90deg); */
+	transition: 2s;
+ }
+ .analytics-humidity-needle-bottom{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 46%;
+	left: 49%;
+	border: 1px solid black;
+	z-index: 10;
+	border-radius: 10px;
+	background-color: gray;
+  }
+
+
+  .analytics-gas-png{
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 55%;
+	width: 100%;
+  }
+  
+  .analytics-gas-png img{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+  }
+  
+  .analytics-gas-percent{
+	width: 30%;
+	position: absolute;
+	text-align: center;
+	font-size: larger;
+	font-weight: 700;
+	left: 35%;
+	top: 95%;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: 1px solid black;
+  }
+  
+  .analytics-gas-needle{
+	position: absolute;
+	width: 8px;
+	height: 80px;
+	top: 53%;
+	left: 49.5%;
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: gray;
+	z-index: 10;
+	transform-origin: bottom;
+	transition: 2s;
+  }
+  
+  .analytics-gas-needle-bottom{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 76%;
+	left: 48%;
+	border: 1px solid black;
+	z-index: 10;
+	border-radius: 10px;
+	background-color: gray;
+  }
+
+  .analytics-pressure-box{
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 80%;
+	width: 100%;
+  }
+  
+  .analytics-pressure-percent{
+	width: 25%;
+	position: absolute;
+	text-align: center;
+	align-items: center;
+	align-content: center;
+	font-size: larger;
+	font-weight: 700;
+	height: 10%;
+	left: 38%;
+	top: 70%;
+	border: 1px solid black;
+	border-radius: 1rem;
+  }
+  
+  .analytics-pressure-bar{
+	width: 100%;
+	height: 25%;
+	background-image: linear-gradient(to right,green, #00ce2d, #eeea00,orange,red, #a00000);
+	border-radius: 2rem;
+  }
+  
+  .analytics-pressure-pointer{
+	/* inverted triangle shaped pointer above the pressure-bar */
+	top: 30%;
+	position: absolute;
+	border-top: 30px solid gray;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+  }
+
+.chart-graph{
+	background-color: #ffffe9;
+	position: relative;
+  	width: 70%;
+	/* border: 1px solid black; */
+	border-radius: 0.5rem;
+}
+  
+  
+  
