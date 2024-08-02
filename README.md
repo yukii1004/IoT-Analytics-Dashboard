@@ -1,0 +1,2 @@
+# IoT-Analytics-Dashboard
+A full-stack web application for managing and visualizing data from IoT devices, featuring user authentication, device geolocation, real-time data analytics, and interactive visualizations.
