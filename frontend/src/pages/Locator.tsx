@@ -50,7 +50,7 @@ export default function Locator() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDevices = async () => {
       setLoading(true);
       setError(null);
       try {
@@ -88,7 +88,7 @@ export default function Locator() {
       }
     };
 
-    fetchData();
+    fetchDevices();
   }, [selectedDeviceId]);
 
   const handleDeviceChange = (deviceId: string) => {

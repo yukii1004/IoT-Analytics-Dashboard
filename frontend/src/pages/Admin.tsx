@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { db } from './firebase'
-import { getDocs, collection } from 'firebase/firestore'
+import { auth } from "./firebase";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -11,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface Device {
-  id: string
+  id: string 
   name: string
   latitude: number
   longitude: number
@@ -24,24 +23,41 @@ export default function Admin() {
   const [deviceName, setDeviceName] = useState('')
   const [latitude, setLatitude] = useState('')
   const [longitude, setLongitude] = useState('')
+  const [error, setError] = useState<string | null>(null);
   const [checkedDevices, setCheckedDevices] = useState<string[]>([])
 
   useEffect(() => {
     const fetchDevices = async () => {
-      const querySnapshot = await getDocs(collection(db, 'Devices'))
-      const formattedDevices = querySnapshot.docs.map(doc => {
-        const data = doc.data()
-        return {
-          id: data.id,
-          name: data.name,
-          latitude: data.coordinates?.latitude,
-          longitude: data.coordinates?.longitude,
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          throw new Error("User not logged in");
         }
-      })
-      setDevices(formattedDevices.slice(1))
-    }
-    fetchDevices()
-  }, [])
+        const response = await fetch(`/api/fetchDevices`, {
+          headers: { "user-id": user.uid },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Failed to fetch devices: ${response.statusText}`);
+        }
+  
+        const data = await response.json();
+        const formattedDevices = data.map((device: any) => ({
+          id: device.id.toString(),
+          name: device.name,
+          latitude: device.latitude,
+          longitude: device.longitude,
+        }));
+        setDevices(formattedDevices);
+      } catch (error) {
+        console.error("Error fetching devices:", error);
+        setError("Failed to fetch Devices. Please add a new device or check your backend and try again later.");
+      }
+    };
+  
+    fetchDevices();
+  }, []);
+  
   
   const handleCheckboxChange = (deviceId: string) => {
     setCheckedDevices(prevCheckedDevices =>
@@ -112,7 +128,7 @@ export default function Admin() {
           </CardHeader>
           <CardContent>
             <ScrollArea className="h-auto w-full pr-4">
-              {devices.sort((a, b) => parseInt(a.id) - parseInt(b.id)).map(device => (
+              {devices.length!==0 ? devices.sort((a, b) => parseInt(a.id) - parseInt(b.id)).map(device => (
                 <div key={device.id} className="flex items-center space-x-2 mb-2">
                   <Checkbox
                     id={`device-${device.id}`}
@@ -121,7 +137,7 @@ export default function Admin() {
                   />
                   <Label htmlFor={`device-${device.id}`} className='text-base'>{device.id}. {device.name}</Label>
                 </div>
-              ))}
+              )) : <div className="text-red-500">{error}</div> }
             </ScrollArea>
           </CardContent>
         </Card>
